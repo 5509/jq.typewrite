@@ -17,10 +17,10 @@ Here is a [demo site](http://5509.me/sample/jq.typewrite/).
 
 #### HTML
 
-	&lt;p id="typewrite1">This is typewrite&lt;/p&gt;
-	&lt;p&gt;
-	  &lt;input type="button" id="do_typewrite1" value="Do typewrite 1"&gt;
-	&lt;/p&gt;
+	<p id="typewrite1">This is typewrite</p>
+	<p>
+	  <input type="button" id="do_typewrite1" value="Do typewrite 1">
+	</p>
 
 ### With options and using deferred
 
@@ -37,8 +37,11 @@ Here is a [demo site](http://5509.me/sample/jq.typewrite/).
 	});
 
 #### HTML
-	&lt;p id="typewrite2">This is typewrite&lt;br&gt;
-	This is typewrite&lt;/p&gt;
+	<p id="typewrite2">This is typewrite<br>
+	This is typewrite</p>
+	<p>
+	  <input type="button" id="do_typewrite2" value="Do typewrite 2">
+	</p>
 
 ## Options
 
