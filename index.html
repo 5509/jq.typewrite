@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<meta charset="UTF-8">
+	<title>jq.typewrite</title>
+</html>
+<body>
+
+<h1>jq.typewrite</h1>
+
+<h2>basic typewrite</h2>
+<pre>var typewrite1 = $.typewrite($('#typewrite1'));
+$('#do_typewrite1').click(function() {
+    typewrite1.play();
+});</pre>
+<p id="typewrite1">This is typewrite</p>
+<p>
+	<input type="button" id="do_typewrite1" value="Do typewrite 1">
+</p>
+
+<h2>with options and using deferred</h2>
+<pre>var typewrite2 = $.typewrite($('#typewrite2'), {
+    duration: 2,
+    hide: false
+});
+$('#do_typewrite2').click(function() {
+    typewrite2.play().done(function() {
+        alert('completed');
+    });
+});</pre>
+<p id="typewrite2">This is typewrite<br>
+This is typewrite</p>
+
+<p>
+	<input type="button" id="do_typewrite2" value="Do typewrite 2">
+</p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="scripts/jq.typewrite.js"></script>
+<script>
+
+	// setup
+	var typewrite1 = $.typewrite($('#typewrite1'));
+	var typewrite2 = $.typewrite($('#typewrite2'), {
+		duration: 2,
+		hide: false
+	});
+
+	$('#do_typewrite1').click(function() {
+		typewrite1.play();
+	});
+	$('#do_typewrite2').click(function() {
+		typewrite2.play().done(function() {
+			alert('completed');
+		});
+	});
+</script>
+
+</body>
+</html>
