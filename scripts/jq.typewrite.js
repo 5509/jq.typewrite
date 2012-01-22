@@ -22,8 +22,7 @@
 			var self = this,
 				end = undefined,
 				l = undefined,
-				str = undefined,
-				str_add = undefined;
+				str = undefined;
 
 			self.dfd = undefined;
 			self.conf = $.extend({
@@ -44,7 +43,7 @@
 			str = new String(str);
 
 			self.end = str.length - 1;
-			self.per_wait = (self.conf.duration || 1) * 1000 / str.length;
+			self.perWait = (self.conf.duration || 1) * 1000 / str.length;
 		
 			if ( self.conf.hide ) {
 				self._hide();
@@ -75,7 +74,7 @@
 					} else {
 						self.loopFunc[i + 1]();
 					}
-				}, self.per_wait);
+				}, self.perWait);
 			}
 		},
 
@@ -98,9 +97,6 @@
 			self.loopFunc[0]();
 
 			return self.dfd.promise();
-		},
-
-		destroy: function() {
 		}
 	};
 
