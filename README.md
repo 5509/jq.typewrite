@@ -51,7 +51,7 @@ Here is a [demo site](http://5509.me/sample/jq.typewrite/).
 * wait - when target characters, adding wait time (def next
 
 ### wait (デフォルトは日本語全角のみ
-* ！ - 0.3
-* ？ - 0.3
-* 、 - 0.3
-* 。 - 0.3
+* ！ - 0.1
+* ？ - 0.1
+* 、 - 0.1
+* 。 - 0.1

@@ -20,7 +20,8 @@ $('#do_typewrite1').click(function() {
 <h2>with options and using deferred</h2>
 <pre>var typewrite2 = $.typewrite($('#typewrite2'), {
     duration: 2,
-    hide: false
+    hide: false,
+	end: '|'
 });
 $('#do_typewrite2').click(function() {
     typewrite2.play().done(function() {
