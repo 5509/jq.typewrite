@@ -43,7 +43,25 @@ Here is a [demo site](http://5509.me/sample/jq.typewrite/).
 	  <input type="button" id="do_typewrite2" value="Do typewrite 2">
 	</p>
 
-## Options
+### Using as a jQuery plugin
+
+Using as a jQuery plugin, a 'play()' method call as a 'typewritePlay()' method.
+
+#### script
+	var typewrite4 = $('#typewrite4').typewrite({
+	  end: '|'
+	});
+	$('#do_typewrite4').click(function() {
+	  typewrite4.typewritePlay(2);
+	});
+
+#### HTML
+	<p id="typewrite4">Using as a jQuery plugin</p>
+	<p>
+	  <input type="button" id="do_typewrite4" value="Do typewrite 4">
+	</p>
+
+## Options (Use as a method
 
 * duration - duration time (def 1, 1 => 1s
 * hide - default text showing option (def true

@@ -1,17 +1,18 @@
 /**
  * jq.typewrite
  *
- * @version      0.3
+ * @version      0.4
  * @author       nori (norimania@gmail.com)
  * @copyright    5509 (http://5509.me/)
  * @license      The MIT License
  * @link         https://github.com/5509/jq.typewrite
  *
- * 2012-01-24 01:22
+ * 2012-01-24 02:19
  */
 ;(function($, undefined) {
 
 	var Typewrite = function(string_parent, conf) {
+		this.namespace = 'Typewrite';
 		if ( this instanceof Typewrite ) {
 			return this.init(string_parent, conf);
 		}
@@ -133,6 +134,52 @@
 		}
 	};
 
+	function extend_method(base, obj) {
+		var c = undefined,
+			namespace = toFirstLetterLowerCase(obj.namespace),
+			method_name = undefined;
+		for ( c in obj ) {
+			if ( typeof obj[c] !== 'function'
+			  || /(?:^_)|(?:^handleEvent$)|(?:^init$)/.test(c) ) {
+				continue;
+			}
+			method_name = namespace + toFirstLetterUpperCase(c);
+			base[method_name] = (function() {
+				var p = c;
+				return function(arguments) {
+					return obj[p](arguments);
+				}
+			}());
+		}
+		return base;
+	}
+
+	function toFirstLetterUpperCase(string) {
+		return string.replace(
+			/(^[a-z])/,
+			function($1) {
+				return $1.toUpperCase();
+			}
+		);
+	}
+
+	function toFirstLetterLowerCase(string) {
+		return string.replace(
+			/(^[A-Z])/,
+			function($1) {
+				return $1.toLowerCase();
+			}
+		);
+	}
+
+	// method extend
 	$.typewrite = Typewrite;
+	// $.fn extend
+	$.fn.typewrite = function(conf) {
+		var type = Typewrite(this, conf);
+
+		base = extend_method(this, type);
+		return this;
+	};
 	
 }(jQuery));

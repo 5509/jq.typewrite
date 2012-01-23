@@ -46,6 +46,13 @@ $('#do_typewrite3').click(function() {
 	<input type="button" id="do_typewrite3" value="Do typewrite 3">
 </p>
 
+<h2>Using as a plugin</h2>
+<pre></pre>
+<p id="typewrite4">Using as a jQuery plugin</p>
+<p>
+	<input type="button" id="do_typewrite4" value="Do typewrite 4">
+</p>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="scripts/jq.typewrite.js"></script>
 <script>
@@ -58,6 +65,9 @@ $('#do_typewrite3').click(function() {
 		end: '|'
 	});
 	var typewrite3 = $.typewrite($('#typewrite3'));
+	var typewrite4 = $('#typewrite4').typewrite({
+		end: '|'
+	});
 
 	$('#do_typewrite1').click(function() {
 		typewrite1.play();
@@ -69,6 +79,9 @@ $('#do_typewrite3').click(function() {
 	});
 	$('#do_typewrite3').click(function() {
 		typewrite3.play(4);
+	});
+	$('#do_typewrite4').click(function() {
+		typewrite4.typewritePlay(2);
 	});
 </script>
 
