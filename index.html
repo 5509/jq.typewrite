@@ -34,6 +34,17 @@ This is typewrite</p>
 	<input type="button" id="do_typewrite2" value="Do typewrite 2">
 </p>
 
+<h2>Using adding wait</h2>
+<pre>var typewrite3 = $.typewrite($('#typewrite3'));
+$('#do_typewrite3').click(function() {
+    typewrite3.play(4);
+});</pre>
+<p id="typewrite3">句点、読点。があると少し待ちます。<br>
+ビックリマークがあっても少し待ちます！待ってるよね？たぶん。</p>
+<p>
+	<input type="button" id="do_typewrite3" value="Do typewrite 3">
+</p>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="scripts/jq.typewrite.js"></script>
 <script>
@@ -42,8 +53,10 @@ This is typewrite</p>
 	var typewrite1 = $.typewrite($('#typewrite1'));
 	var typewrite2 = $.typewrite($('#typewrite2'), {
 		duration: 2,
-		hide: false
+		hide: false,
+		end: '|'
 	});
+	var typewrite3 = $.typewrite($('#typewrite3'));
 
 	$('#do_typewrite1').click(function() {
 		typewrite1.play();
@@ -52,6 +65,9 @@ This is typewrite</p>
 		typewrite2.play().done(function() {
 			alert('completed');
 		});
+	});
+	$('#do_typewrite3').click(function() {
+		typewrite3.play(4);
 	});
 </script>
 

@@ -3,7 +3,6 @@
 This method gives a basic typewrite effect to a target element.  
 Here is a [demo site](http://5509.me/sample/jq.typewrite/).
 
-
 ## Usage
 
 ### Basic
@@ -28,7 +27,8 @@ Here is a [demo site](http://5509.me/sample/jq.typewrite/).
 
 	var typewrite2 = $.typewrite($('#typewrite2'), {
 		duration: 2,
-		hide: false
+		hide: false,
+		end: '|'
 	});
 	$('#do_typewrite2').click(function() {
 		typewrite2.play().done(function() {
@@ -47,3 +47,11 @@ Here is a [demo site](http://5509.me/sample/jq.typewrite/).
 
 * duration - duration time (def 1, 1 => 1s
 * hide - default text showing option (def true
+* end - typing cursor (def _(underscore
+* wait - when target characters, adding wait time (def next
+
+### wait (デフォルトは日本語全角のみ
+* ！ - 0.3
+* ？ - 0.3
+* 、 - 0.3
+* 。 - 0.3

@@ -1,13 +1,13 @@
 /**
  * jq.typewrite
  *
- * @version      0.1
+ * @version      0.3
  * @author       nori (norimania@gmail.com)
  * @copyright    5509 (http://5509.me/)
  * @license      The MIT License
  * @link         https://github.com/5509/jq.typewrite
  *
- * 2012-01-21 20:57
+ * 2012-01-24 01:22
  */
 ;(function($, undefined) {
 
@@ -26,8 +26,16 @@
 
 			self.dfd = undefined;
 			self.conf = $.extend({
+				esc: '\\',
 				duration: 1,
-				hide: true
+				end: '_',
+				hide: true,
+				wait: {
+					'！': 0.1,
+					'？': 0.1,
+					'。': 0.1,
+					'、': 0.1
+				}
 			}, conf);
 			self.height = string_parent.css('height');
 			self.$elem = string_parent;
@@ -37,34 +45,56 @@
 			self.loopFunc = [];
 			self.playing = false;
 
-			str = self.elem.innerHTML
-				.replace(/(?:<br>)/g, '\\')
+			self.str = self.elem.innerHTML
+				.replace(/(?:<br>)/g, self.conf.esc)
 				.replace(/\t|\n|\r/g, '');
-			str = new String(str);
+			self.str = self.str.split('');
 
-			self.end = str.length - 1;
-			self.perWait = (self.conf.duration || 1) * 1000 / str.length;
+			self.end = self.str.length - 1;
+			self._setDuration(self.conf.duration);
 		
 			if ( self.conf.hide ) {
 				self._hide();
 			}
 
 			// add function to func list
-			$.each(str, function(i, val) {
+			$.each(self.str, function(i, val) {
 				self.loopFunc.push(self._func(i, val));
 			});
+		},
+
+		_setDuration: function(duration) {
+			var self = this;
+			self.perWait = duration * 1000 / self.str.length;
 		},
 
 		_func: function(i, val) {
 			var self = this;
 
 			return function() {
-				if ( val === '\\' ) {
+				var wait = self.perWait,
+					strings = undefined,
+					c = undefined;
+
+				// when target character, perWait is a little longer
+				for ( c in self.conf.wait ) {
+					if ( val !== c ) continue;
+					wait = wait + self.conf.wait[c] * 1000;
+				}
+
+				if ( val === self.conf.esc ) {
 					self.current.push('<br>');
 				} else {
 					self.current.push(val);
 				}
-				self.elem.innerHTML = self.current.join('');
+
+				strings = self.current.join('');
+
+				if ( i !== self.end ) {
+					strings = strings + self.conf.end;
+				}
+					
+				self.elem.innerHTML = strings;
 
 				setTimeout(function() {
 					if ( i === self.end ) {
@@ -74,7 +104,7 @@
 					} else {
 						self.loopFunc[i + 1]();
 					}
-				}, self.perWait);
+				}, wait);
 			}
 		},
 
@@ -85,11 +115,14 @@
 			self.elem.innerHTML = '';
 		},
 
-		play: function() {
+		play: function(duration) {
 			var self = this;
 
 			if ( self.playing ) {
 				return $.Deferred().reject();
+			}
+			if ( duration ) {
+				self._setDuration(duration);
 			}
 			self.dfd = $.Deferred();
 			self.playing = true;
