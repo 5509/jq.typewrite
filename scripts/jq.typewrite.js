@@ -1,13 +1,13 @@
 /**
  * jq.typewrite
  *
- * @version      0.4
+ * @version      0.4.1
  * @author       nori (norimania@gmail.com)
  * @copyright    5509 (http://5509.me/)
  * @license      The MIT License
  * @link         https://github.com/5509/jq.typewrite
  *
- * 2012-01-24 02:19
+ * 2012-01-24 14:14
  */
 ;(function($, undefined) {
 
@@ -151,7 +151,6 @@
 				}
 			}());
 		}
-		return base;
 	}
 
 	function toFirstLetterUpperCase(string) {
@@ -178,7 +177,7 @@
 	$.fn.typewrite = function(conf) {
 		var type = Typewrite(this, conf);
 
-		base = extend_method(this, type);
+		extend_method(this, type);
 		return this;
 	};
 	
