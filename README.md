@@ -1,7 +1,6 @@
 # jq.typewrite
 
 This method gives a basic typewrite effect to a target element.  
-Here is a [demo site](http://5509.me/sample/jq.typewrite/).
 
 ## Usage
 
